@@ -2,8 +2,7 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for codebase-memory-mcp.
-GH_REPO="https://github.com/shaolang/codebase-memory-mcp"
+GH_REPO="https://github.com/DeusData/codebase-memory-mcp"
 TOOL_NAME="codebase-memory-mcp"
 TOOL_TEST="codebase-memory-mcp --version"
 
@@ -14,7 +13,6 @@ fail() {
 
 curl_opts=(-fsSL)
 
-# NOTE: You might want to remove this if codebase-memory-mcp is not hosted on GitHub releases.
 if [ -n "${GITHUB_API_TOKEN:-}" ]; then
 	curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
 fi
@@ -31,18 +29,17 @@ list_github_tags() {
 }
 
 list_all_versions() {
-	# TODO: Adapt this. By default we simply list the tag names from GitHub releases.
-	# Change this function if codebase-memory-mcp has other means of determining installable versions.
 	list_github_tags
 }
 
 download_release() {
-	local version filename url
+	local version filename url platform arch
 	version="$1"
 	filename="$2"
+	platform="$(uname | awk '{print tolower($0)}')"
+	arch="$(uname -m | awk '{print tolower($0)}')"
 
-	# TODO: Adapt the release URL convention for codebase-memory-mcp
-	url="$GH_REPO/archive/v${version}.tar.gz"
+	url="$GH_REPO/releases/download/v${version}/$TOOL_NAME-${platform}-${arch}.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
@@ -61,7 +58,6 @@ install_version() {
 		mkdir -p "$install_path"
 		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
 
-		# TODO: Assert codebase-memory-mcp executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
 		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."

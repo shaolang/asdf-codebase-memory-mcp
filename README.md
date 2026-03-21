@@ -2,7 +2,7 @@
 
 # asdf-codebase-memory-mcp [![Build](https://github.com/shaolang/asdf-codebase-memory-mcp/actions/workflows/build.yml/badge.svg)](https://github.com/shaolang/asdf-codebase-memory-mcp/actions/workflows/build.yml) [![Lint](https://github.com/shaolang/asdf-codebase-memory-mcp/actions/workflows/lint.yml/badge.svg)](https://github.com/shaolang/asdf-codebase-memory-mcp/actions/workflows/lint.yml)
 
-[codebase-memory-mcp](https://github.com/shaolang/codebase-memory-mcp) plugin for the [asdf version manager](https://asdf-vm.com).
+[codebase-memory-mcp](https://github.com/DeusData/codebase-memory-mcp) plugin for the [asdf version manager](https://asdf-vm.com).
 
 </div>
 
@@ -15,18 +15,13 @@
 
 # Dependencies
 
-**TODO: adapt this section**
-
 - `bash`, `curl`, `tar`, and [POSIX utilities](https://pubs.opengroup.org/onlinepubs/9699919799/idx/utilities.html).
-- `SOME_ENV_VAR`: set this environment variable in your shell config to load the correct version of tool x.
 
 # Install
 
 Plugin:
 
 ```shell
-asdf plugin add codebase-memory-mcp
-# or
 asdf plugin add codebase-memory-mcp https://github.com/shaolang/asdf-codebase-memory-mcp.git
 ```
 
@@ -48,6 +43,8 @@ codebase-memory-mcp --version
 
 Check [asdf](https://github.com/asdf-vm/asdf) readme for more instructions on how to
 install & manage versions.
+
+After setting the version, run `codebase-memory-mcp install`.
 
 # Contributing
 
