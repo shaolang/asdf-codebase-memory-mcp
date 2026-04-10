@@ -34,8 +34,8 @@ asdf list-all codebase-memory-mcp
 # Install specific version
 asdf install codebase-memory-mcp latest
 
-# Set a version globally (on your ~/.tool-versions file)
-asdf global codebase-memory-mcp latest
+# Set a version globally (on your ~/.tool-versions file), assuming you are in $HOME
+asdf set codebase-memory-mcp latest
 
 # Now codebase-memory-mcp commands are available
 codebase-memory-mcp --version
